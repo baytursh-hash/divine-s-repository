@@ -1,0 +1,24 @@
+digraph FSM {
+  rankdir=LR;
+  fontname="DejaVu Sans";
+  node [shape=circle, style=filled, fontname="DejaVu Sans", fontsize=12, width=1.4, fixedsize=true];
+  edge [fontname="DejaVu Sans", fontsize=10];
+  label="Конечный автомат ночника\n(T_STILL = 10 мин, T_FADE = 5 мин, T_EMPTY = 30 с; в демо 15 / 10 / 5 с)";
+  labelloc=t;
+
+  start [shape=point, width=0.15];
+  EMPTY  [label="ПУСТО\nсвет: выкл", fillcolor="#e0e0e0"];
+  AWAKE  [label="НЕ_СПИТ\nсвет: тёплый", fillcolor="#ffe08a"];
+  FALL   [label="ЗАСЫПАЕТ\nсвет: гаснет", fillcolor="#f5b971"];
+  ASLEEP [label="СПИТ\nсвет: выкл", fillcolor="#9fb4d8"];
+
+  start -> EMPTY;
+  EMPTY  -> AWAKE  [label="радар видит человека"];
+  AWAKE  -> FALL   [label="неподвижен > T_STILL"];
+  FALL   -> ASLEEP [label="прошло T_FADE"];
+  FALL   -> AWAKE  [label="движение"];
+  ASLEEP -> AWAKE  [label="движение\n(проснулся, встал)"];
+  AWAKE  -> EMPTY  [label="нет человека > T_EMPTY"];
+  FALL   -> EMPTY  [label="нет человека > T_EMPTY", style=dashed];
+  ASLEEP -> EMPTY  [label="нет человека > T_EMPTY", style=dashed];
+}
