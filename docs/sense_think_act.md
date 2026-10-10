@@ -18,3 +18,4 @@
 ```
 
 **Состояние «спит» — это оценка, а не медицинский факт:** устройство считает, что человек заснул, если он в комнате и почти не двигается дольше T_STILL.
+<img width="705" height="350" alt="sense think act" src="https://github.com/user-attachments/assets/8eb487c5-0a50-4042-8c4f-875b7ab3cc24" />
